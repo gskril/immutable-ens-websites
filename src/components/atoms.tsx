@@ -27,3 +27,22 @@ export const Columns = styled.div(
     gap: ${theme.space['6']};
   `
 )
+
+export const Link = styled.a(
+  ({ theme }) => css`
+    color: ${theme.colors.bluePrimary};
+    text-decoration: underline;
+
+    @media (hover: hover) {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  `
+)
+
+export const Container = styled.div(
+  ({ theme }) => css`
+    max-width: ${theme.space['128']};
+  `
+)

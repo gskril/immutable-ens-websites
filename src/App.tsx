@@ -1,5 +1,6 @@
 import { Nav } from './components/Nav'
 import { Layout } from './components/atoms'
+import { Hero } from './components/hero'
 
 export default function App() {
   return (
@@ -8,7 +9,7 @@ export default function App() {
         <Nav />
 
         <main>
-          <p>body</p>
+          <Hero />
         </main>
 
         <p>footer</p>
