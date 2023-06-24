@@ -1,21 +1,19 @@
-import { Button, Input } from '@ensdomains/thorin'
-import { useState } from 'react'
+import { Button, Input, OutlinkSVG } from '@ensdomains/thorin'
 import { namehash } from 'viem'
 import { useAccount, useContractReads, useNetwork } from 'wagmi'
 
 import { getWrapperContract } from '../../contracts'
-import useDebounce from '../../hooks/useDebounce'
 import { Card, Container } from '../atoms'
 
 type Props = {
+  name: string
+  setName: (name: string) => void
   nextStep: () => void
 }
 
-export function WrapParent({ nextStep }: Props) {
+export function WrapParent({ name, setName, nextStep }: Props) {
   const { chain } = useNetwork()
   const { address } = useAccount()
-  const [name, setName] = useState('')
-  const debouncedName = useDebounce(name, 500)
   const nameWrapper = getWrapperContract(chain?.id)
 
   const { data: nameWrapperReads } = useContractReads({
@@ -23,18 +21,15 @@ export function WrapParent({ nextStep }: Props) {
       {
         ...nameWrapper,
         functionName: 'isWrapped',
-        args: [namehash(debouncedName + '.eth')],
+        args: [namehash(name + '.eth')],
       },
       {
         ...nameWrapper,
         functionName: 'canModifyName',
-        args: [
-          namehash(debouncedName + '.eth'),
-          address || ('' as `0x${string}`),
-        ],
+        args: [namehash(name + '.eth'), address || ('' as `0x${string}`)],
       },
     ],
-    enabled: !!debouncedName,
+    enabled: !!name,
   })
 
   const isWrapped = nameWrapperReads?.[0].result
@@ -45,7 +40,7 @@ export function WrapParent({ nextStep }: Props) {
   //   ...nameWrapper,
   //   functionName: 'wrapETH2LD',
   //   args: [
-  //     debouncedName,
+  //     name,
   //     address || ('' as `0x${string}`),
   //     0,
   //     publicResolver.address,
@@ -66,8 +61,8 @@ export function WrapParent({ nextStep }: Props) {
           onChange={(e) => setName(e.target.value)}
         />
 
-        {(isWrapped && canModifyName) || debouncedName === '' ? (
-          <Button disabled={debouncedName === ''} onClick={() => nextStep()}>
+        {(isWrapped && canModifyName) || name === '' ? (
+          <Button disabled={name === ''} onClick={() => nextStep()}>
             Continue
           </Button>
         ) : isWrapped && !canModifyName ? (
@@ -76,7 +71,8 @@ export function WrapParent({ nextStep }: Props) {
           <Button
             as="a"
             target="_blank"
-            href={`https://app.ens.domains/${debouncedName}.eth?tab=more`}
+            href={`https://app.ens.domains/${name}.eth?tab=more`}
+            suffix={<OutlinkSVG />}
           >
             Wrap Name
           </Button>

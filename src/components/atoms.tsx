@@ -62,4 +62,5 @@ export const CardDescription = styled(Typography).attrs({
   color: 'grey',
 })`
   line-height: 1.4;
+  text-align: center;
 `
