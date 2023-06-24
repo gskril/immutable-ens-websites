@@ -11,15 +11,15 @@ const Wrapper = styled.div(
   `
 )
 
-const Step = styled.div<{ complete: boolean }>(
-  ({ complete, theme }) => css`
+const Step = styled.div<{ $complete: boolean }>(
+  ({ $complete, theme }) => css`
     --size: ${theme.space['3.5']};
 
     width: var(--size);
     height: var(--size);
     border-radius: ${theme.radii.full};
 
-    ${complete
+    ${$complete
       ? css`
           background-color: ${theme.colors.bluePrimary};
           border: ${theme.space['0.5']} solid ${theme.colors.bluePrimary};
@@ -40,7 +40,7 @@ export function Steps({
   return (
     <Wrapper>
       {Array.from({ length: totalSteps }).map((_, i) => (
-        <Step key={i} complete={i < currentStep} />
+        <Step key={i} $complete={i < currentStep} />
       ))}
     </Wrapper>
   )
