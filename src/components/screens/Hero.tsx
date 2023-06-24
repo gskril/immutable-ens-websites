@@ -1,6 +1,7 @@
 import { Button, Heading, Typography, mq } from '@ensdomains/thorin'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import styled, { css } from 'styled-components'
+import { useAccount } from 'wagmi'
 
 import { Container, Link } from '../atoms'
 
@@ -38,7 +39,12 @@ const StyledButton = styled(Button)`
   `)}
 `
 
-export function Hero() {
+type Props = {
+  nextStep: () => void
+}
+
+export function Hero({ nextStep }: Props) {
+  const { isConnected } = useAccount()
   const { openConnectModal } = useConnectModal()
 
   return (
@@ -58,9 +64,13 @@ export function Hero() {
           .
         </Description>
 
-        <StyledButton onClick={() => openConnectModal?.()}>
-          Get Started
-        </StyledButton>
+        {isConnected ? (
+          <StyledButton onClick={() => nextStep()}>Get Started</StyledButton>
+        ) : (
+          <StyledButton onClick={() => openConnectModal?.()}>
+            Connect Wallet
+          </StyledButton>
+        )}
       </Wrapper>
     </Container>
   )

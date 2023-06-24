@@ -10,14 +10,16 @@ const possibleSteps = [0, 1, 2]
 type PossibleSteps = (typeof possibleSteps)[number]
 
 export default function App() {
+  // TODO: would be nice to have this as a global context
   // Step 0: User is not connected
   // Step 1: User has connected wallet
   const [step, setStep] = useState<PossibleSteps>(0)
-  const { isConnected } = useAccount()
+  const nextStep = () => setStep(step + 1)
+  const { isDisconnected } = useAccount()
 
   useEffect(() => {
-    if (isConnected) setStep(1)
-  }, [isConnected])
+    if (isDisconnected) setStep(0)
+  }, [isDisconnected])
 
   return (
     <>
@@ -25,9 +27,9 @@ export default function App() {
         <Nav />
 
         <main>
-          {step === 0 && <Hero />}
+          {step === 0 && <Hero nextStep={nextStep} />}
 
-          {step === 1 && <WrapParent />}
+          {step === 1 && <WrapParent nextStep={nextStep} />}
 
           {step > 0 && (
             <Steps currentStep={step} totalSteps={possibleSteps.length} />
