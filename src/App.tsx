@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react'
 import { useAccount } from 'wagmi'
 
-import { Hero } from './components/Hero'
 import { Nav } from './components/Nav'
+import { Steps } from './components/Steps'
 import { Layout } from './components/atoms'
+import { Hero, WrapParent } from './components/screens'
+
+const possibleSteps = [0, 1, 2]
+type PossibleSteps = (typeof possibleSteps)[number]
 
 export default function App() {
   // Step 0: User is not connected
   // Step 1: User has connected wallet
-  const [step, setStep] = useState<0 | 1 | 2>(0)
+  const [step, setStep] = useState<PossibleSteps>(0)
   const { isConnected } = useAccount()
 
   useEffect(() => {
@@ -23,7 +27,11 @@ export default function App() {
         <main>
           {step === 0 && <Hero />}
 
-          {step === 1 && <p>connected</p>}
+          {step === 1 && <WrapParent />}
+
+          {step > 0 && (
+            <Steps currentStep={step} totalSteps={possibleSteps.length} />
+          )}
         </main>
 
         {/* Footer placeholder */}

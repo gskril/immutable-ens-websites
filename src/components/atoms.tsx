@@ -1,4 +1,8 @@
-import { mq } from '@ensdomains/thorin'
+import {
+  Card as ThorinCard,
+  Heading as ThorinHeading,
+  mq,
+} from '@ensdomains/thorin'
 import styled, { css } from 'styled-components'
 
 export const Layout = styled.div(
@@ -43,6 +47,16 @@ export const Link = styled.a(
 
 export const Container = styled.div(
   ({ theme }) => css`
+    margin-left: auto;
+    margin-right: auto;
     max-width: ${theme.space['128']};
+  `
+)
+
+export const Card = styled(ThorinCard)(
+  ({ theme }) => css`
+    align-items: center;
+    max-width: ${theme.space['112']};
+    margin: 0 auto;
   `
 )

@@ -2,7 +2,7 @@ import { Button, Heading, Typography, mq } from '@ensdomains/thorin'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import styled, { css } from 'styled-components'
 
-import { Container, Link } from './atoms'
+import { Container, Link } from '../atoms'
 
 const Wrapper = styled.div(
   ({ theme }) => css`
@@ -44,7 +44,7 @@ export function Hero() {
   return (
     <Container>
       <Wrapper>
-        <Title>Immutable .eth Websites</Title>
+        <Title as="h1">Immutable .eth Websites</Title>
 
         <Description>
           Lock your IPFS website deployments to versioned ENS subdomains to

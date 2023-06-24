@@ -3,7 +3,7 @@ import { useAccountModal, useConnectModal } from '@rainbow-me/rainbowkit'
 import styled, { css } from 'styled-components'
 import { useAccount, useEnsAvatar, useEnsName } from 'wagmi'
 
-import { Columns } from './atoms'
+import { Columns, Link } from './atoms'
 import { EnsLogo, EnsLogoShort } from './icons'
 
 const ShortLogoWrapper = styled.div`
@@ -78,13 +78,15 @@ export function Nav() {
 
   return (
     <Columns>
-      <ShortLogoWrapper>
-        <EnsLogoShort />
-      </ShortLogoWrapper>
+      <Link href="/">
+        <ShortLogoWrapper>
+          <EnsLogoShort />
+        </ShortLogoWrapper>
 
-      <FullLogoWrapper>
-        <EnsLogo />
-      </FullLogoWrapper>
+        <FullLogoWrapper>
+          <EnsLogo />
+        </FullLogoWrapper>
+      </Link>
 
       {address ? (
         <>
