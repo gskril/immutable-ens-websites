@@ -1,8 +1,4 @@
-import {
-  Card as ThorinCard,
-  Heading as ThorinHeading,
-  mq,
-} from '@ensdomains/thorin'
+import { Card as ThorinCard, Typography, mq } from '@ensdomains/thorin'
 import styled, { css } from 'styled-components'
 
 export const Layout = styled.div(
@@ -60,3 +56,10 @@ export const Card = styled(ThorinCard)(
     margin: 0 auto;
   `
 )
+
+export const CardDescription = styled(Typography).attrs({
+  asProp: 'p',
+  color: 'grey',
+})`
+  line-height: 1.4;
+`
