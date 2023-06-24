@@ -1,4 +1,5 @@
 import { Button, Heading, Typography, mq } from '@ensdomains/thorin'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import styled, { css } from 'styled-components'
 
 import { Container, Link } from './atoms'
@@ -38,6 +39,8 @@ const StyledButton = styled(Button)`
 `
 
 export function Hero() {
+  const { openConnectModal } = useConnectModal()
+
   return (
     <Container>
       <Wrapper>
@@ -55,7 +58,9 @@ export function Hero() {
           .
         </Description>
 
-        <StyledButton>Get Started</StyledButton>
+        <StyledButton onClick={() => openConnectModal?.()}>
+          Get Started
+        </StyledButton>
       </Wrapper>
     </Container>
   )
