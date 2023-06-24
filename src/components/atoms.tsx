@@ -6,6 +6,7 @@ export const Layout = styled.div(
     width: 100%;
     min-height: 100svh;
     display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: space-between;
     padding: ${theme.space['4']};
@@ -19,6 +20,7 @@ export const Layout = styled.div(
 
 export const Columns = styled.div(
   ({ theme }) => css`
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
