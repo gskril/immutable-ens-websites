@@ -1,6 +1,6 @@
+import { Hero } from './components/Hero'
 import { Nav } from './components/Nav'
 import { Layout } from './components/atoms'
-import { Hero } from './components/hero'
 
 export default function App() {
   return (
