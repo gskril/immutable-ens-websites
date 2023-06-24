@@ -12,7 +12,8 @@ export default function App() {
           <Hero />
         </main>
 
-        <p>footer</p>
+        {/* Footer placeholder */}
+        <div style={{ height: '3rem' }} />
       </Layout>
     </>
   )
