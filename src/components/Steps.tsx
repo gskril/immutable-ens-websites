@@ -7,7 +7,7 @@ const Wrapper = styled.div(
     margin-left: auto;
     margin-right: auto;
     gap: ${theme.space['1.5']};
-    margin-top: ${theme.space['2']};
+    margin-top: ${theme.space['3']};
   `
 )
 

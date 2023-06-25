@@ -1,9 +1,11 @@
 import { Button, Heading, Typography, mq } from '@ensdomains/thorin'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
+import { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { useAccount } from 'wagmi'
 
 import { Container, Link } from '../atoms'
+import { RenewSubnames } from './RenewSubnames'
 
 const Wrapper = styled.div(
   ({ theme }) => css`
@@ -46,6 +48,11 @@ type Props = {
 export function Hero({ nextStep }: Props) {
   const { isConnected } = useAccount()
   const { openConnectModal } = useConnectModal()
+  const [isRenewing, setIsRenewing] = useState(false)
+
+  if (isRenewing) {
+    return <RenewSubnames />
+  }
 
   return (
     <Container>
@@ -65,7 +72,19 @@ export function Hero({ nextStep }: Props) {
         </Description>
 
         {isConnected ? (
-          <StyledButton onClick={() => nextStep()}>Get Started</StyledButton>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+          >
+            <StyledButton onClick={() => nextStep()}>Get Started</StyledButton>
+            <Button
+              size="small"
+              colorStyle="blueSecondary"
+              style={{ height: '1.75rem' }}
+              onClick={() => setIsRenewing(true)}
+            >
+              Renew Subnames
+            </Button>
+          </div>
         ) : (
           <StyledButton onClick={() => openConnectModal?.()}>
             Connect Wallet
