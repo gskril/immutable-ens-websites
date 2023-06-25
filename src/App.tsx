@@ -13,7 +13,7 @@ import {
 } from './components/screens'
 import useDebounce from './hooks/useDebounce'
 
-const possibleSteps = [0, 1, 2, 3, 4, 5, 6, 7]
+const possibleSteps = [0, 1, 2, 3, 4, 5, 6]
 type PossibleSteps = (typeof possibleSteps)[number]
 
 export default function App() {
@@ -22,10 +22,9 @@ export default function App() {
   // Step 1: Check if a parent name is wrapped
   // Step 2: Call `approve` on the NameWrapper
   // Step 3: Burn `CANNOT_UNWRAP` and `CANNOT_APPROVE` on the 2LD
-  // Step 4: Create subname using the lockable resolver contract
+  // Step 4: Create subname using the lockable resolver contract while burning fuses on the subname
   // Step 5: Set contenthash on the subname
   // Step 6: Lock contenthash on the subname
-  // Step 7: Burn CAN_EXTEND_EXPIRY | PARENT_CANNOT_CONTROL | CANNOT_UNWRAP | CANNOT_SET_RESOLVER on the subname
   const [step, setStep] = useState<PossibleSteps>(0)
   const nextStep = () => setStep(step + 1)
   const { isDisconnected } = useAccount()

@@ -14,6 +14,7 @@ import {
   getResolverContract,
   getWrapperContract,
 } from '../../contracts'
+import { getFuseValue } from '../../utilts'
 import { Card, CardDescription, Container } from '../atoms'
 
 type Props = {
@@ -41,6 +42,10 @@ export function RegisterSubname({
     args: [namehash(`${subname}.${name}.eth`)],
   })
 
+  // CANNOT_UNWRAP | CANNOT_SET_RESOLVER | CAN_EXTEND_EXPIRY | PARENT_CANNOT_CONTROL
+  const fusesToBurn = [1, 8, 262144, 65536]
+  const fuses = getFuseValue(fusesToBurn)
+
   const prepareTx = usePrepareContractWrite({
     ...nameWrapper,
     functionName: 'setSubnodeRecord',
@@ -50,8 +55,8 @@ export function RegisterSubname({
       address || ('' as `0x${string}`),
       resolver.address,
       BigInt(0),
-      0,
-      BigInt(0),
+      fuses,
+      BigInt(10000000000),
     ],
     enabled: subname.length > 0,
   })
@@ -78,7 +83,7 @@ export function RegisterSubname({
         {subname === '' ? (
           <Button disabled>Enter a name</Button>
         ) : recordExists ? (
-          <Button>Not available</Button>
+          <Button disabled>Not available</Button>
         ) : receipt.isSuccess ? (
           <Button onClick={() => nextStep()}>Continue</Button>
         ) : receipt.isError ? (
