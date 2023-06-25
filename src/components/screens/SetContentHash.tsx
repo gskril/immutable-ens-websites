@@ -47,6 +47,7 @@ export function SetContentHash({ name, subname, nextStep }: Props) {
         <Input
           label=""
           hideLabel
+          disabled={!!tx.data}
           onChange={(e) => setContentHash(e.target.value)}
           placeholder="0xe30101701220a642fe512f2beb64c428fe62fcbb3cf2dd62068e163a99e1ff7874b450fc1bf6"
         />
