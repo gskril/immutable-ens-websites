@@ -8,7 +8,10 @@ import {
   ApproveRenewalController,
   BurnParentFuses,
   Hero,
+  LockContentHash,
   RegisterSubname,
+  SetContentHash,
+  Success,
   WrapParent,
 } from './components/screens'
 import useDebounce from './hooks/useDebounce'
@@ -74,6 +77,24 @@ export default function App() {
               nextStep={nextStep}
             />
           )}
+
+          {step === 5 && (
+            <SetContentHash
+              name={debouncedName}
+              subname={debouncedSubname}
+              nextStep={nextStep}
+            />
+          )}
+
+          {step === 6 && (
+            <LockContentHash
+              name={debouncedName}
+              subname={debouncedSubname}
+              nextStep={nextStep}
+            />
+          )}
+
+          {step === 7 && <Success name={name} subname={subname} />}
 
           {step > 0 && (
             <Steps currentStep={step} totalSteps={possibleSteps.length} />
