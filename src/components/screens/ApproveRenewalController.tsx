@@ -1,5 +1,5 @@
 import { Button } from '@ensdomains/thorin'
-import { namehash } from 'viem'
+import { namehash } from 'viem/ens'
 import {
   useContractRead,
   useContractWrite,
@@ -27,16 +27,17 @@ export function ApproveRenewalController({ name, nextStep }: Props) {
     args: [BigInt(namehash(name + '.eth'))],
   })
 
+  const isApproved = approvedAddress === renewalController.address
+
   const prepareTx = usePrepareContractWrite({
     ...nameWrapper,
     functionName: 'approve',
     args: [renewalController.address, BigInt(namehash(name + '.eth'))],
+    enabled: !isApproved,
   })
 
   const tx = useContractWrite(prepareTx.config)
   const receipt = useWaitForTransaction({ hash: tx.data?.hash })
-
-  const isApproved = approvedAddress === renewalController.address
 
   return (
     <Container>
@@ -60,7 +61,9 @@ export function ApproveRenewalController({ name, nextStep }: Props) {
         ) : prepareTx.isError ? (
           <Button disabled>Error Preparing Tx</Button>
         ) : (
-          <Button onClick={() => tx.write?.()}>Approve</Button>
+          <Button disabled={!tx.write} onClick={() => tx.write?.()}>
+            Approve
+          </Button>
         )}
       </Card>
     </Container>

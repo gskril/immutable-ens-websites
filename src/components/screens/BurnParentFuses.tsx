@@ -1,5 +1,5 @@
 import { Button } from '@ensdomains/thorin'
-import { namehash } from 'viem'
+import { namehash } from 'viem/ens'
 import {
   useContractRead,
   useContractWrite,
@@ -60,7 +60,9 @@ export function BurnParentFuses({ name, nextStep }: Props) {
         ) : prepareTx.isError ? (
           <Button disabled>Error Preparing Tx</Button>
         ) : (
-          <Button onClick={() => tx.write?.()}>Lock</Button>
+          <Button disabled={!tx.write} onClick={() => tx.write?.()}>
+            Lock
+          </Button>
         )}
       </Card>
     </Container>

@@ -8,6 +8,7 @@ import {
   ApproveRenewalController,
   BurnParentFuses,
   Hero,
+  RegisterSubname,
   WrapParent,
 } from './components/screens'
 import useDebounce from './hooks/useDebounce'
@@ -36,6 +37,9 @@ export default function App() {
   const [name, setName] = useState('')
   const debouncedName = useDebounce(name, 500)
 
+  const [subname, setSubname] = useState('')
+  const debouncedSubname = useDebounce(subname, 500)
+
   return (
     <>
       <Layout>
@@ -61,6 +65,15 @@ export default function App() {
 
           {step === 3 && (
             <BurnParentFuses name={debouncedName} nextStep={nextStep} />
+          )}
+
+          {step === 4 && (
+            <RegisterSubname
+              name={debouncedName}
+              subname={debouncedSubname}
+              setSubname={setSubname}
+              nextStep={nextStep}
+            />
           )}
 
           {step > 0 && (

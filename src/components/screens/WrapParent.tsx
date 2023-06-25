@@ -1,5 +1,5 @@
 import { Button, Input, OutlinkSVG } from '@ensdomains/thorin'
-import { namehash } from 'viem'
+import { namehash } from 'viem/ens'
 import { useAccount, useContractReads, useNetwork } from 'wagmi'
 
 import { getWrapperContract } from '../../contracts'
