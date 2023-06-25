@@ -60,7 +60,16 @@ export const Card = styled(ThorinCard)(
 export const CardDescription = styled(Typography).attrs({
   asProp: 'p',
   color: 'grey',
-})`
-  line-height: 1.4;
-  text-align: center;
-`
+})(
+  ({ theme }) => css`
+    line-height: 1.4;
+    text-align: center;
+
+    code {
+      font-size: 0.9375rem;
+      letter-spacing: -0.0625rem;
+      padding: 0.0625rem 0.25rem;
+      background-color: ${theme.colors.greySurface};
+    }
+  `
+)
