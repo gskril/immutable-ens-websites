@@ -42,7 +42,8 @@ export function BurnParentFuses({ name, nextStep }: Props) {
     <Container>
       <Card title="Lock Renewal Controller">
         <CardDescription>
-          This is burning fuses on your name is not reversible.
+          Burn the ability to change the renewal controller (this is
+          irreversible)
         </CardDescription>
 
         {receipt.isSuccess || isFusesBurned ? (

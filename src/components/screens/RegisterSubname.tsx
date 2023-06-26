@@ -68,7 +68,7 @@ export function RegisterSubname({
     <Container>
       <Card title="Register Subname">
         <CardDescription>
-          Think of this as a versioned website domain
+          Think of this as a versioned website deployment
         </CardDescription>
 
         <Input

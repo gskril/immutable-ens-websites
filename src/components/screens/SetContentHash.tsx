@@ -41,7 +41,6 @@ export function SetContentHash({ name, subname, nextStep }: Props) {
           <Link href="https://content-hash.surge.sh/" target="_blank">
             this tool
           </Link>
-          .
         </CardDescription>
 
         <Input

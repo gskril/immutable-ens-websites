@@ -33,12 +33,10 @@ export function LockContentHash({ name, subname, nextStep }: Props) {
     <Container>
       <Card title="Lock IPFS Website">
         <CardDescription>
-          This will permanently remove the ability for you to change the IPFS
-          hash associated with{' '}
+          Permanently revoke the ability to change the IPFS hash associated with{' '}
           <strong>
             {subname}.{name}.eth
           </strong>
-          .
         </CardDescription>
 
         {receipt.isSuccess ? (

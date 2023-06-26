@@ -3,7 +3,7 @@ import { namehash } from 'viem/ens'
 import { useAccount, useContractReads, useNetwork } from 'wagmi'
 
 import { getWrapperContract } from '../../contracts'
-import { Card, Container } from '../atoms'
+import { Card, CardDescription, Container } from '../atoms'
 
 type Props = {
   name: string
@@ -54,8 +54,14 @@ export function WrapParent({ name, setName, nextStep }: Props) {
   return (
     <Container>
       <Card title="Wrap Your ENS Name">
+        <CardDescription>
+          Upgrade your name to the latest ENS contracts to enable fine-grained
+          controls
+        </CardDescription>
+
         <Input
-          label=".eth name"
+          label=""
+          hideLabel
           type="text"
           suffix=".eth"
           onChange={(e) => setName(e.target.value)}

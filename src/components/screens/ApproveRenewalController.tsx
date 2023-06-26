@@ -43,7 +43,7 @@ export function ApproveRenewalController({ name, nextStep }: Props) {
     <Container>
       <Card title="Approve Renewal Controller">
         <CardDescription>
-          Allow anyone to renew subnames of {name}.eth
+          Allow anyone to renew subnames of <strong>{name}.eth</strong>
         </CardDescription>
 
         {receipt.isSuccess || isApproved ? (
