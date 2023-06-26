@@ -8,15 +8,17 @@ import {
 } from 'wagmi'
 
 import { getResolverContract } from '../../contracts'
+import { useGlobalState } from '../../hooks/useGlobalState'
 import { Card, CardDescription, Container } from '../atoms'
 
 type Props = {
   name: string
   subname: string
-  nextStep: () => void
 }
 
-export function LockContentHash({ name, subname, nextStep }: Props) {
+export function LockContentHash({ name, subname }: Props) {
+  const { nextStep } = useGlobalState()
+
   const { chain } = useNetwork()
   const resolver = getResolverContract(chain?.id)
 

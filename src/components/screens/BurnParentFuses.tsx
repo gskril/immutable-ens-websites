@@ -9,15 +9,17 @@ import {
 } from 'wagmi'
 
 import { getWrapperContract } from '../../contracts'
-import { getFuseValue } from '../../utilts'
+import { useGlobalState } from '../../hooks/useGlobalState'
+import { getFuseValue } from '../../lib/utils'
 import { Card, CardDescription, Container } from '../atoms'
 
 type Props = {
   name: string
-  nextStep: () => void
 }
 
-export function BurnParentFuses({ name, nextStep }: Props) {
+export function BurnParentFuses({ name }: Props) {
+  const { nextStep } = useGlobalState()
+
   const { chain } = useNetwork()
   const nameWrapper = getWrapperContract(chain?.id)
   const fusesToBurn = [1, 64]

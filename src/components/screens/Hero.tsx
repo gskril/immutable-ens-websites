@@ -4,6 +4,7 @@ import { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { useAccount } from 'wagmi'
 
+import { useGlobalState } from '../../hooks/useGlobalState'
 import { Container, Link } from '../atoms'
 import { RenewSubnames } from './RenewSubnames'
 
@@ -41,11 +42,9 @@ const StyledButton = styled(Button)`
   `)}
 `
 
-type Props = {
-  nextStep: () => void
-}
+export function Hero() {
+  const { nextStep } = useGlobalState()
 
-export function Hero({ nextStep }: Props) {
   const { isConnected } = useAccount()
   const { openConnectModal } = useConnectModal()
   const [isRenewing, setIsRenewing] = useState(false)

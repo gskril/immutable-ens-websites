@@ -9,14 +9,16 @@ import {
 } from 'wagmi'
 
 import { getManagerContract, getWrapperContract } from '../../contracts'
+import { useGlobalState } from '../../hooks/useGlobalState'
 import { Card, CardDescription, Container } from '../atoms'
 
 type Props = {
   name: string
-  nextStep: () => void
 }
 
-export function ApproveRenewalController({ name, nextStep }: Props) {
+export function ApproveRenewalController({ name }: Props) {
+  const { nextStep } = useGlobalState()
+
   const { chain } = useNetwork()
   const renewalController = getManagerContract(chain?.id)
   const nameWrapper = getWrapperContract(chain?.id)

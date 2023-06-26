@@ -7,7 +7,8 @@ import { ThemeProvider } from 'styled-components'
 import { WagmiConfig } from 'wagmi'
 
 import App from './App.tsx'
-import { chains, wagmiConfig } from './providers.ts'
+import { GlobalContextProvider } from './lib/context.tsx'
+import { chains, wagmiConfig } from './lib/providers.ts'
 import './styles/normalize.css'
 import './styles/style.css'
 
@@ -17,7 +18,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <ThorinGlobalStyles />
       <WagmiConfig config={wagmiConfig}>
         <RainbowKitProvider chains={chains} modalSize="compact">
-          <App />
+          <GlobalContextProvider>
+            <App />
+          </GlobalContextProvider>
         </RainbowKitProvider>
       </WagmiConfig>
     </ThemeProvider>

@@ -10,15 +10,17 @@ import {
 
 import { getResolverContract } from '../../contracts'
 import useDebounce from '../../hooks/useDebounce'
+import { useGlobalState } from '../../hooks/useGlobalState'
 import { Card, CardDescription, Container, Link } from '../atoms'
 
 type Props = {
   name: string
   subname: string
-  nextStep: () => void
 }
 
-export function SetContentHash({ name, subname, nextStep }: Props) {
+export function SetContentHash({ name, subname }: Props) {
+  const { nextStep } = useGlobalState()
+
   const { chain } = useNetwork()
   const resolver = getResolverContract(chain?.id)
   const [contentHash, setContentHash] = useState('')

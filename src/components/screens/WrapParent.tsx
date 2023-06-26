@@ -3,15 +3,17 @@ import { namehash } from 'viem/ens'
 import { useAccount, useContractReads, useNetwork } from 'wagmi'
 
 import { getWrapperContract } from '../../contracts'
+import { useGlobalState } from '../../hooks/useGlobalState'
 import { Card, CardDescription, Container } from '../atoms'
 
 type Props = {
   name: string
   setName: (name: string) => void
-  nextStep: () => void
 }
 
-export function WrapParent({ name, setName, nextStep }: Props) {
+export function WrapParent({ name, setName }: Props) {
+  const { nextStep } = useGlobalState()
+
   const { chain } = useNetwork()
   const { address } = useAccount()
   const nameWrapper = getWrapperContract(chain?.id)

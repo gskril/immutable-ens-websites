@@ -14,22 +14,19 @@ import {
   getResolverContract,
   getWrapperContract,
 } from '../../contracts'
-import { getFuseValue } from '../../utilts'
+import { useGlobalState } from '../../hooks/useGlobalState'
+import { getFuseValue } from '../../lib/utils'
 import { Card, CardDescription, Container } from '../atoms'
 
 type Props = {
   name: string
   subname: string
   setSubname: (name: string) => void
-  nextStep: () => void
 }
 
-export function RegisterSubname({
-  name,
-  subname,
-  setSubname,
-  nextStep,
-}: Props) {
+export function RegisterSubname({ name, subname, setSubname }: Props) {
+  const { nextStep } = useGlobalState()
+
   const { chain } = useNetwork()
   const { address } = useAccount()
   const registry = getRegistryContract()
