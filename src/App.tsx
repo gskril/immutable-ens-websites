@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import { Steps } from './components/Steps'
 import { Layout } from './components/atoms'
@@ -62,8 +63,7 @@ export default function App() {
           )}
         </main>
 
-        {/* Footer placeholder */}
-        <div style={{ height: '3rem' }} />
+        <Footer />
       </Layout>
     </>
   )
